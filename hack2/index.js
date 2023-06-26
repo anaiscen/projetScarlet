@@ -343,7 +343,7 @@ addEventListener('keydown', ({ keyCode }) => {
 
     case 90:
       player.velocity.y -= 20;
-      f (player.)
+      if (player.)
       break;
     case 83:
       break;
