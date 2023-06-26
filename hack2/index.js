@@ -65,6 +65,11 @@ class Player {
         cropWidth: 341,
         width: 127.875,
       },
+      minautorRunRight: {
+        right: minautorRunRight,
+        width: 600,
+        height: 500,
+      },
     };
     this.currentSprite = this.sprites.stand.right;
     this.currentCropWidth = 177;
@@ -87,8 +92,12 @@ class Player {
     this.frames++;
     if (this.frames > 59 && this.currentSprite === this.sprites.stand.right)
       this.frames = 0;
-    else if (this.frames > 29 && this.currentSprite === this.sprites.run.right)
+    else if (
+      (this.frames > 29 && this.currentSprite === this.sprites.run.right) ||
+      (this.frames > 29 && this.currentSprite === this.sprites.run.left)
+    ) {
       this.frames = 0;
+    }
     this.draw();
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
