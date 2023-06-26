@@ -1,3 +1,5 @@
+// Code de cimetary.js
+
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
 imgPlatform.style.width = '570px';
