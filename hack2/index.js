@@ -1,3 +1,6 @@
+let jump = true;
+let doubleJump = false;
+
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
 imgPlatform.style.width = '500px';
@@ -199,7 +202,7 @@ function initLvl2() {
   };
   platforms = [
     new Platform({ x: -1, y: 505, image: imgPlatform }),
-    // new Platform({ x: img_width + 4, y: 505, image: imgPlatform }),
+    new Platform({ x: img_width + 4, y: 505, image: imgPlatform }),
     new Platform({ x: img_width * 2 + 400, y: 505, image: imgPlatform }),
     new Platform({ x: img_width * 3 + 400, y: 230, image: imgPlatform }),
   ];
@@ -291,6 +294,8 @@ function animate() {
       player.position.x <= platform.position.x + platform.width
     ) {
       player.velocity.y = 0;
+      jump = true;
+      doubleJump = false;
     }
   });
 }
@@ -342,8 +347,27 @@ addEventListener('keydown', ({ keyCode }) => {
       break;
 
     case 90:
-      player.velocity.y -= 20;
-      f (player.)
+      if (jump) {
+        player.velocity.y -= 20;
+        console.log('saut');
+        jump = false;
+        doubleJump = true;
+      } else if (doubleJump) {
+        player.velocity.y -= 20;
+        console.log('doubleSaut');
+        doubleJump = false;
+      }
+      // if (jumpCount < 2) {
+      //   jumpCount++;
+      //   player.velocity.y -= 20;
+      //   console.log(jumpCount);
+      // } else if (jumpCount === 2 || player.velocity.y === 0) {
+      //   setTimeout(() => {
+      //     console.log('pouet');
+      //     jumpCount = 0;
+      //   }, 300);
+      // }
+
       break;
     case 83:
       break;
