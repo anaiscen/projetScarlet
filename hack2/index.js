@@ -342,20 +342,20 @@ function init() {
   player = new Player();
   textLines = [
     [
-      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.normal, string: 'Soul - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Carlos n\u0027est pas venu ce soir\u2026',
       },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: ' J\u0027esp\u00E8re qu\u0027il ne lui est rien arriv\u00E9 !',
       },
     ],
     [
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string:
           'Tant pis, je rentre chez moi. J\u0027esp\u00E8re qu\u0027il sera l\u00E0 la prochaine fois.',
       },
@@ -368,19 +368,20 @@ function init() {
     ],
     [
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string:
           'Hadraniel - Ton ami Carlos n\u0027a pas pu venir car il \u00E0 \u00E9t\u00E9 captur\u00E9 par un malandrin !',
       },
-      { speed: speeds.pause, string: '', pause: true },
+    ],
+    [
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Soul - Oh mon dieu ! ! !',
       },
     ],
     [
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string:
           'Hadraniel - Rends toi vite sur la route bonbon pour le sauver !',
       },
@@ -478,9 +479,11 @@ function init() {
 function initLvl2() {
   textLines = [
     [
-      { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.normal, string: 'Mais !' },
+      { speed: speeds.normal, string: 'Soul - ' },
+      { speed: speeds.fast, string: 'Mais !' },
       { speed: speeds.pause, string: '', pause: true },
+    ],
+    [
       { speed: speeds.normal, string: 'Soul -' },
       {
         speed: speeds.fast,
@@ -490,10 +493,10 @@ function initLvl2() {
     ],
     [
       { speed: speeds.normal, string: 'Hadraniel - ' },
-      { speed: speeds.normal, string: 'Tout est normal.' },
+      { speed: speeds.fast, string: 'Tout est normal.' },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'C\u0027est un effet secondaire lorsque tu changes de plan.',
       },
     ],
@@ -501,7 +504,7 @@ function initLvl2() {
       { speed: speeds.normal, string: 'Hadraniel - ' },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Continue ton chemin, tu es presque arriv\u00E9 !',
       },
     ],
@@ -608,58 +611,59 @@ function initLvl2() {
 function initLvl3() {
   textLines = [
     [
-      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.normal, string: 'Soul - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Oh non ! Pas en Orc ! Je suis tout vert\u2026',
       },
-      { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Hadraniel -' },
-      { speed: speeds.normal, string: 'Bahaha ! ! !' },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel -' },
+      { speed: speeds.fast, string: 'Hadraniel -' },
+      { speed: speeds.fast, string: 'Bahaha ! ! !' },
+    ],
+    [
+      { speed: speeds.normal, string: 'Hadraniel -' },
       {
-        speed: speeds.slow,
+        speed: speeds.fast,
         string:
           'D\u00E9sol\u00E9 Soul\u2026 Mais j\u0027adore cette petite couette !',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.normal, string: 'Soul - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Tr\u00E8s dr\u00F4le.',
       },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Tu ne serais pas en train de me faire tourner en rond toi ?',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: 'Hadraniel - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Noooon\u2026 Du tout.',
       },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Je suis un ange Soul ! Je suis ici pour t\u0027aider !',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.normal, string: 'Soul - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Oui c\u0027est vrai tu as raison. Je ne devrais pas douter.',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: 'Hadraniel - ' },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Mais tu es vraiment na\u00EFf\u2026',
       },
     ],
@@ -753,12 +757,9 @@ function initLvl5() {
     [
       { speed: speeds.slow, string: 'Soul - ' },
       { speed: speeds.slow, string: 'Ah enfin ! ' },
-      { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Un caillou maintenant ?' },
     ],
     [
       { speed: speeds.slow, string: 'Hadraniel - ' },
-      { speed: speeds.pause, string: '', pause: true },
       { speed: speeds.normal, string: 'T\u0027es vraiment un idiot Soul…' },
     ],
     [
@@ -798,34 +799,82 @@ function initLvl5() {
       diffLeft: 40,
       diffRight: 0,
     }),
+
     new Platform({
-      x: smallPlatformCandy + 7,
-      y: 533,
-      image: platformCandy,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
-    }),
-    new Platform({
-      x: smallPlatformCandy * 2 + 200,
+      x: platformCandy.width + 300,
       y: 533,
       image: smallPlatformCandy,
       width: 301,
-      diffRight: -80,
-      diffLeft: 20,
+      diffLeft: 55,
+      diffRight: -50,
     }),
+
     new Platform({
-      x: smallPlatformCandy * 3,
+      x: platformCandy.width,
       y: 430,
       image: extraSmallPlatformCandy,
       width: 150,
-      diffRight: -90,
+      diffRight: -60,
       diffLeft: 20,
     }),
 
     new Platform({
-      x: smallPlatformCandy * 3 + 200,
+      x: platformCandy.width + extraSmallPlatformCandy.width,
+      y: 330,
+      image: extraSmallPlatformCandy,
+      width: 150,
+      diffRight: -60,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 3,
+      y: 430,
+      image: extraSmallPlatformCandy,
+      width: 150,
+      diffRight: -60,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 3 + 200,
       y: 230,
+      image: smallPlatformCandy,
+      width: 301,
+      diffLeft: 55,
+      diffRight: -50,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 5,
+      y: 430,
+      image: smallPlatformCandy,
+      width: 301,
+      diffLeft: 55,
+      diffRight: -50,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 6.3,
+      y: 330,
+      image: extraSmallPlatformCandy,
+      width: 150,
+      diffRight: -60,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 6.5 + extraSmallPlatformCandy.width - 50,
+      y: 200,
+      image: extraSmallPlatformCandy,
+      width: 150,
+      diffRight: -60,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: smallPlatformCandy.width * 6.5 + extraSmallPlatformCandy.width * 2,
+      y: 533,
       image: platformCandy,
       width: 505,
       diffLeft: 40,
@@ -860,37 +909,38 @@ function initLvl5() {
 function initLvl4() {
   textLines = [
     [
-      { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.slow, string: 'Sérieusement ?' },
+      { speed: speeds.normal, string: 'Soul - ' },
+      { speed: speeds.fast, string: 'Sérieusement ?' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Un caillou maintenant ?' },
+      { speed: speeds.fast, string: 'Un caillou maintenant ?' },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: 'Hadraniel - ' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Ça doit \u00EAtre dur…' },
+      { speed: speeds.fast, string: 'Ça doit \u00EAtre dur…' },
     ],
     [
-      { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.normal, string: 'Très drôle. Avoue-le !' },
+      { speed: speeds.normal, string: 'Soul - ' },
+      { speed: speeds.fast, string: 'Très drôle. Avoue-le !' },
       { speed: speeds.pause, string: '', pause: true },
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'C\u0027est toi qui m\u0027inflige \u00E7a !',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel - ' },
-      { speed: speeds.normal, string: 'Oh ! Tu as deviné ça tout seul ?' },
-      { speed: speeds.pause, string: '', pause: true },
+      { speed: speeds.normal, string: 'Hadraniel - ' },
+      { speed: speeds.fast, string: 'Oh ! Tu as deviné ça tout seul ?' },
+    ],
+    [
       {
-        speed: speeds.normal,
+        speed: speeds.fast,
         string: 'Soul - Salaud !',
       },
     ],
     [
-      { speed: speeds.slow, string: 'Hadraniel - ' },
-      { speed: speeds.normal, string: '“Fuit en ricanant”' },
+      { speed: speeds.normal, string: 'Hadraniel - ' },
+      { speed: speeds.fast, string: '“Fuit en ricanant”' },
     ],
   ];
   switchButton.style.visibility = 'visible';
@@ -977,6 +1027,8 @@ function initLvl4() {
   };
 }
 
+function initLvl6() {}
+
 function animate() {
   requestAnimationFrame(animate);
   c.fillStyle = 'white';
@@ -1022,6 +1074,9 @@ function animate() {
       else if (currentLevel === 2) initLvl3();
       else if (currentLevel === 3) initLvl4();
       else if (currentLevel === 4) initLvl5();
+      else {
+        initLvl6();
+      }
     }
   }
 
@@ -1047,7 +1102,7 @@ function animate() {
     }
   });
 }
-initLvl2();
+initLvl5();
 animate();
 
 addEventListener('keyup', ({ keyCode }) => {
