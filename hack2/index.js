@@ -1,5 +1,6 @@
 let jump = true;
 let doubleJump = false;
+let currentLevel;
 
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
@@ -17,15 +18,20 @@ let imgBackground = document.createElement('img');
 imgBackground.src = './poison-city-bg.png';
 let imgBackgroundLvl2 = document.createElement('img');
 imgBackgroundLvl2.src = './spider-world-bg.png';
+let imgBackgroundLvl3 = document.createElement('img');
+imgBackgroundLvl3.src = './cimetiere.png';
 
 let imgHill = document.createElement('img');
 imgHill.src = './hills.png';
 
-let imgSmallPlatform = document.createElement('img');
-imgSmallPlatform.src = './platformSmallTall.png';
-imgSmallPlatform.style.width = '350px';
-
-let img_small_width = parseInt(imgSmallPlatform.style.width);
+let platformCemetery = document.createElement('img');
+platformCemetery.src = './cimetiere-plat.png';
+let smallPlatformCemetery = document.createElement('img');
+smallPlatformCemetery.src = './cimetiere-plat-medium.png';
+smallPlatformCemetery.style.width = '150px';
+let extraSmallPlatformCemetery = document.createElement('img');
+extraSmallPlatformCemetery.src = './cimetiere-plat-little.png';
+extraSmallPlatformCemetery.style.width = '150px';
 
 let spriteRunLeft = document.createElement('img');
 spriteRunLeft.src = './spriteRunLeft.png';
@@ -170,6 +176,7 @@ let GenericObjects = [];
 let scrollOffset = 0;
 
 function init() {
+  currentLevel = 1;
   player = new Player();
   keys = {
     right: {
@@ -183,7 +190,7 @@ function init() {
     new Platform({ x: -1, y: 533, image: imgPoisonPlatform }),
     new Platform({ x: img_width - 2, y: 533, image: imgPoisonPlatform }),
     new Platform({ x: img_width * 2 + 200, y: 533, image: imgPoisonPlatform }),
-    new Platform({ x: img_width * 3 + 400, y: 230, image: imgPoisonPlatform }),
+    new Platform({ x: img_width * 3 + 400, y: 530, image: imgPoisonPlatform }),
   ];
 
   GenericObjects = [new GenericObject({ x: 0, y: 0, image: imgBackground })];
@@ -191,6 +198,8 @@ function init() {
 }
 
 function initLvl2() {
+  currentLevel = 2;
+  console.log(currentLevel);
   player = new Player();
   keys = {
     right: {
@@ -203,8 +212,9 @@ function initLvl2() {
   platforms = [
     new Platform({ x: -1, y: 505, image: imgPlatform }),
     new Platform({ x: img_width + 4, y: 505, image: imgPlatform }),
-    new Platform({ x: img_width * 2 + 400, y: 505, image: imgPlatform }),
-    new Platform({ x: img_width * 3 + 400, y: 230, image: imgPlatform }),
+    new Platform({ x: img_width * 2 + 200, y: 505, image: imgPlatform }),
+    new Platform({ x: img_width * 3 + 200, y: 530, image: imgPlatform }),
+    new Platform({ x: img_width * 4 + 200, y: 530, image: imgPlatform }),
   ];
 
   GenericObjects = [
@@ -213,10 +223,10 @@ function initLvl2() {
     // new GenericObject({ x: 1300, y: 0, image: imgHill }),
   ];
   scrollOffset = 0;
-  if (scrollOffset > img_width * 3 + 400) initLvl3();
 }
 
 function initLvl3() {
+  currentLevel = 3;
   player = new Player();
   keys = {
     right: {
@@ -227,14 +237,24 @@ function initLvl3() {
     },
   };
   platforms = [
-    new Platform({ x: -1, y: 533, image: imgPlatform }),
-    new Platform({ x: img_width + 7, y: 533, image: imgPlatform }),
-    new Platform({ x: img_width * 2 + 200, y: 533, image: imgPlatform }),
-    new Platform({ x: img_width * 3 + 400, y: 230, image: imgSmallPlatform }),
+    new Platform({ x: -1, y: 533, image: platformCemetery }),
+    new Platform({ x: img_width + 7, y: 533, image: platformCemetery }),
+    new Platform({
+      x: img_width * 2 + 200,
+      y: 533,
+      image: smallPlatformCemetery,
+    }),
+    new Platform({
+      x: img_width * 3,
+      y: 430,
+      image: extraSmallPlatformCemetery,
+    }),
+
+    new Platform({ x: img_width * 4 + 400, y: 230, image: platformCemetery }),
   ];
 
   GenericObjects = [
-    new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl2 }),
+    new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl3 }),
     // new GenericObject({ x: 0, y: 0, image: imgHill }),
     // new GenericObject({ x: 1300, y: 0, image: imgHill }),
   ];
@@ -281,10 +301,19 @@ function animate() {
         genericObject.position.x += 3;
       });
     }
-    if (scrollOffset > img_width * 3 + 400) initLvl2();
+    if (scrollOffset > img_width * 3) {
+      if (currentLevel === 1) initLvl2();
+      else if (currentLevel === 2) initLvl3();
+    }
   }
 
-  if (player.position.y > canvas.height) init();
+  if (player.position.y > canvas.height) {
+    if (currentLevel === 1) init();
+    else if (currentLevel === 2) {
+      console.log('coucou');
+      initLvl2();
+    } else if (currentLevel === 3) initLvl3();
+  }
   platforms.forEach((platform) => {
     if (
       player.position.y + player.height <= platform.position.y &&
@@ -297,6 +326,7 @@ function animate() {
       jump = true;
       doubleJump = false;
     }
+    if (player.position.y > canvas.height) init();
   });
 }
 init();
@@ -313,7 +343,6 @@ addEventListener('keyup', ({ keyCode }) => {
       player.velocity.x = 0;
       break;
     case 68:
-      console.log('right');
       keys.right.pressed = false;
       player.currentSprite = player.sprites.stand.right;
       player.currentCropWidth = player.sprites.stand.cropWidth;
@@ -322,11 +351,9 @@ addEventListener('keyup', ({ keyCode }) => {
       player.velocity.x = 0;
       break;
     case 90:
-      console.log('up');
       player.velocity.y -= 0;
       break;
     case 83:
-      console.log('down');
       break;
   }
 });
@@ -349,24 +376,12 @@ addEventListener('keydown', ({ keyCode }) => {
     case 90:
       if (jump) {
         player.velocity.y -= 20;
-        console.log('saut');
         jump = false;
         doubleJump = true;
       } else if (doubleJump) {
         player.velocity.y -= 20;
-        console.log('doubleSaut');
         doubleJump = false;
       }
-      // if (jumpCount < 2) {
-      //   jumpCount++;
-      //   player.velocity.y -= 20;
-      //   console.log(jumpCount);
-      // } else if (jumpCount === 2 || player.velocity.y === 0) {
-      //   setTimeout(() => {
-      //     console.log('pouet');
-      //     jumpCount = 0;
-      //   }, 300);
-      // }
 
       break;
     case 83:
