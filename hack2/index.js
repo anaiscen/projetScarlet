@@ -126,6 +126,10 @@ extraSmallPlatform.src = './spider-world-plat-small.png';
 
 let imgPoisonPlatform = document.createElement('img');
 imgPoisonPlatform.src = './poison-city-plat.png';
+let smallPoisonPlatform = document.createElement('img');
+smallPoisonPlatform.src = './poison-city-plat-medium.png';
+let extraSmallPoisonPlatform = document.createElement('img');
+extraSmallPoisonPlatform.src = './poison-city-plat-little.png';
 
 let img_width = parseInt(imgPlatform.style.width);
 
@@ -415,15 +419,6 @@ function init() {
     //   diffLeft: 20,
     // }),
 
-    // new Platform({
-    //   x: 50,
-    //   y: 433,
-    //   image: extraSmallPlatformCandy,
-    //   width: 150,
-    //   diffRight: -90,
-    //   diffLeft: 20,
-    // }),
-
     new Platform({
       x: platformCemetery.width + 200,
       y: 533,
@@ -445,16 +440,16 @@ function init() {
       y: 100,
       image: extraSmallPlatformCemetery,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: platformCemetery.width * 4 - 300,
       y: 505,
       image: extraSmallPlatformCemetery,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: platformCemetery.width * 4 + 50,
@@ -536,24 +531,24 @@ function initLvl2() {
       y: 305,
       image: extraSmallPlatform,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: platformCemetery.width + 200,
       y: 150,
       image: extraSmallPlatform,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: platformCemetery.width + 500,
       y: 150,
       image: extraSmallPlatform,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: imgPlatform.width + 900,
@@ -568,16 +563,16 @@ function initLvl2() {
       y: 530,
       image: extraSmallPlatform,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
     new Platform({
       x: imgPlatform.width + 1900,
       y: 400,
       image: extraSmallPlatform,
       width: 150,
-      diffRight: -90,
-      diffLeft: 20,
+      diffRight: -45,
+      diffLeft: 55,
     }),
   ];
 
@@ -684,25 +679,17 @@ function initLvl3() {
     new Platform({
       x: -1,
       y: 533,
-      image: platformCemetery,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
-    }),
-    new Platform({
-      x: imgPoisonPlatform.width + 7,
-      y: 533,
       image: imgPoisonPlatform,
       width: 505,
       diffLeft: 40,
       diffRight: 0,
     }),
     new Platform({
-      x: platformCemetery.width * 2,
+      x: platformCemetery.width + 200,
       y: 533,
-      image: smallPlatformCemetery,
+      image: smallPoisonPlatform,
       width: 301,
-      diffRight: -80,
+      diffRight: -60,
       diffLeft: 20,
     }),
     new Platform({
@@ -722,11 +709,18 @@ function initLvl3() {
       diffLeft: 40,
       diffRight: 0,
     }),
+    new Platform({
+      x: imgPoisonPlatform.width * 4 + 600,
+      y: 430,
+      image: smallPoisonPlatform,
+      width: 301,
+      diffRight: -60,
+      diffLeft: 20,
+    }),
   ];
 
   GenericObjects = [
     new GenericObject({ x: -2040, y: 0, image: imgBackground }),
-
     new GenericObject({ x: 0, y: 0, image: imgBackground }),
     new GenericObject({ x: 2040, y: 0, image: imgBackground }),
   ];
@@ -918,37 +912,48 @@ function initLvl4() {
       diffLeft: 40,
       diffRight: 0,
     }),
+
     new Platform({
-      x: platformDarkForest.width + 4,
+      x: platformDarkForest.width * 2 - 400,
+      y: 305,
+      image: smallPlatformDarkForest,
+      width: 301,
+      diffRight: -80,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: platformDarkForest.width * 2 - 100,
+      y: 105,
+      image: smallPlatformDarkForest,
+      width: 301,
+      diffRight: -80,
+      diffLeft: 20,
+    }),
+    new Platform({
+      x: platformDarkForest.width * 3 - 100,
+      y: 405,
+      image: extraSmallPlatformDarkForest,
+      width: 150,
+      diffRight: -90,
+      diffLeft: 20,
+    }),
+
+    new Platform({
+      x: platformDarkForest.width * 3 + 180,
+      y: 105,
+      image: platformDarkForest,
+      width: 505,
+      diffLeft: 40,
+      diffRight: 0,
+    }),
+    new Platform({
+      x: platformDarkForest.width * 4 + 380,
       y: 505,
-      image: platformDarkForest,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
-    }),
-    new Platform({
-      x: platformDarkForest.width * 2,
-      y: 505,
-      image: platformDarkForest,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
-    }),
-    new Platform({
-      x: platformDarkForest.width * 3 + 200,
-      y: 530,
-      image: platformDarkForest,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
-    }),
-    new Platform({
-      x: platformDarkForest.width * 4 + 200,
-      y: 530,
-      image: platformDarkForest,
-      width: 505,
-      diffLeft: 40,
-      diffRight: 0,
+      image: extraSmallPlatformDarkForest,
+      width: 150,
+      diffRight: -90,
+      diffLeft: 20,
     }),
   ];
 
@@ -1022,6 +1027,7 @@ function animate() {
       else if (currentLevel === 2) initLvl3();
       else if (currentLevel === 3) initLvl4();
       else if (currentLevel === 4) initLvl5();
+      else if (currentLevel === 5) console.log('Bravo pélo');
     }
   }
 
@@ -1030,6 +1036,8 @@ function animate() {
     else if (currentLevel === 2) {
       initLvl2();
     } else if (currentLevel === 3) initLvl3();
+    else if (currentLevel === 4) initLvl4();
+    else if (currentLevel === 5) initLvl5();
   }
   platforms.forEach((platform) => {
     if (
@@ -1047,7 +1055,7 @@ function animate() {
     }
   });
 }
-initLvl2();
+initLvl4();
 animate();
 
 addEventListener('keyup', ({ keyCode }) => {
