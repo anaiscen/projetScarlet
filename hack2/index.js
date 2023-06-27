@@ -22,9 +22,11 @@ const speeds = {
 let textLines = [];
 //Code d'index.js
 
+//  ****** LEVELS ******** //
+
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
-imgPlatform.style.width = '500px';
+imgPlatform.style.width = '501px';
 imgPlatform.style.height = '50px';
 
 let imgPoisonPlatform = document.createElement('img');
@@ -40,6 +42,10 @@ let imgBackgroundLvl2 = document.createElement('img');
 imgBackgroundLvl2.src = './spider-world-bg.png';
 let imgBackgroundLvl3 = document.createElement('img');
 imgBackgroundLvl3.src = './cimetiere.png';
+let imgBackgroundLvl4 = document.createElement('img');
+imgBackgroundLvl4.src = './Candy-world.png';
+let imgBackgroundLvl5 = document.createElement('img');
+imgBackgroundLvl5.src = './dark-forest-bg.png';
 
 let imgHill = document.createElement('img');
 imgHill.src = './hills.png';
@@ -53,6 +59,25 @@ let extraSmallPlatformCemetery = document.createElement('img');
 extraSmallPlatformCemetery.src = './cimetiere-plat-little.png';
 extraSmallPlatformCemetery.style.width = '150px';
 
+let platformDarkForest = document.createElement('img');
+platformDarkForest.src = './forest-plat.png';
+let smallPlatformDarkForest = document.createElement('img');
+smallPlatformDarkForest.src = './forest-plat-medium.png';
+smallPlatformDarkForest.style.width = '301px';
+let extraSmallPlatformDarkForest = document.createElement('img');
+extraSmallPlatformDarkForest.src = './forest-plat-little.png';
+extraSmallPlatformDarkForest.style.width = '150px';
+
+let platformCandy = document.createElement('img');
+platformCandy.src = './candy-plat.png';
+let smallPlatformCandy = document.createElement('img');
+smallPlatformCandy.src = './candy-plat-medium.png';
+smallPlatformCandy.style.width = '301px';
+let extraSmallPlatformCandy = document.createElement('img');
+extraSmallPlatformCandy.src = './candy-plat-little.png';
+extraSmallPlatformCandy.style.width = '150px';
+
+//  **********PLAYERS ********************
 let spriteRunLeft = document.createElement('img');
 spriteRunLeft.src = './spriteRunLeft.png';
 
@@ -70,6 +95,33 @@ minautorRunRight.src = './minautorRunRight.png';
 
 let minautorRunLeft = document.createElement('img');
 minautorRunLeft.src = './minautorRunleft.png';
+
+let orcRunRight = document.createElement('img');
+orcRunRight.src = './Orc-run-right.png';
+
+let orcRunLeft = document.createElement('img');
+orcRunLeft.src = './Orc-run-left.png';
+
+let orcIdle = document.createElement('img');
+orcIdle.src = './Orc-sur-place.png';
+
+let iceGolemRunLeft = document.createElement('img');
+iceGolemRunLeft.src = './golem-glace-run-left.png';
+
+let iceGolemRunRight = document.createElement('img');
+iceGolemRunRight.src = './golem-glace-run-right.png';
+
+let iceGolemIdle = document.createElement('img');
+iceGolemIdle.src = './golem-glace-idle.png';
+
+let reaperRunLeft = document.createElement('img');
+reaperRunLeft.src = './reaper-run-left.png';
+
+let reaperRunRight = document.createElement('img');
+reaperRunRight.src = './reaper-run-right.png';
+
+let reaperIdle = document.createElement('img');
+reaperIdle.src = './reaper-idle.png';
 
 const canvas = document.querySelector('canvas');
 let c = canvas.getContext('2d');
@@ -102,14 +154,13 @@ class Player {
         width: 127.875,
         height: 300,
       },
-      minautor: {
-        run: {
-          right: minautorRunRight,
-          left: minautorRunLeft,
-          cropWidth: 150,
-          width: 127.875,
-          height: 300,
-        },
+
+      run: {
+        right: minautorRunRight,
+        left: minautorRunLeft,
+        cropWidth: 150,
+        width: 127.875,
+        height: 300,
       },
     };
     this.currentSprite = this.sprites.stand.right;
@@ -119,7 +170,7 @@ class Player {
     c.drawImage(
       this.currentSprite,
       this.currentCropWidth * this.frames,
-      -250,
+      -295,
       this.currentCropWidth,
       400,
       this.position.x,
@@ -131,13 +182,11 @@ class Player {
 
   update() {
     this.frames++;
-    if (this.frames > 11 && this.currentSprite === this.sprites.stand.right)
+    if (this.frames > 10 && this.currentSprite === this.sprites.stand.right)
       this.frames = 0;
     else if (
-      (this.frames > 11 &&
-        this.currentSprite === this.sprites.minautor.run.right) ||
-      (this.frames > 11 &&
-        this.currentSprite === this.sprites.minautor.run.left)
+      (this.frames > 10 && this.currentSprite === this.sprites.run.right) ||
+      (this.frames > 10 && this.currentSprite === this.sprites.run.left)
     ) {
       this.frames = 0;
     }
@@ -232,20 +281,23 @@ function init() {
   };
   platforms = [
     new Platform({ x: -1, y: 533, image: imgPoisonPlatform }),
-    new Platform({ x: img_width - 2, y: 533, image: imgPoisonPlatform }),
+
+    new Platform({ x: img_width + 200, y: 533, image: imgPoisonPlatform }),
     new Platform({ x: img_width * 2 + 200, y: 533, image: imgPoisonPlatform }),
     new Platform({ x: img_width * 3 + 400, y: 530, image: imgPoisonPlatform }),
   ];
 
   GenericObjects = [
+    new GenericObject({ x: -2040, y: 0, image: imgBackground }),
+
     new GenericObject({ x: 0 - 1, y: 0, image: imgBackground }),
+    new GenericObject({ x: 2040 - 10, y: 0, image: imgBackground }),
   ];
   scrollOffset = 0;
 }
 
 function initLvl2() {
   currentLevel = 2;
-  console.log(currentLevel);
   player = new Player();
   keys = {
     right: {
@@ -258,17 +310,33 @@ function initLvl2() {
   platforms = [
     new Platform({ x: -1, y: 505, image: imgPlatform }),
     new Platform({ x: img_width + 4, y: 505, image: imgPlatform }),
-    new Platform({ x: img_width * 2 + 200, y: 505, image: imgPlatform }),
+    new Platform({ x: img_width * 2, y: 505, image: imgPlatform }),
     new Platform({ x: img_width * 3 + 200, y: 530, image: imgPlatform }),
     new Platform({ x: img_width * 4 + 200, y: 530, image: imgPlatform }),
   ];
 
   GenericObjects = [
+    new GenericObject({ x: -2040, y: 0, image: imgBackgroundLvl2 }),
+
     new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl2 }),
-    // new GenericObject({ x: 0, y: 0, image: imgHill }),
-    // new GenericObject({ x: 1300, y: 0, image: imgHill }),
+    new GenericObject({ x: 2040 - 1, y: 0, image: imgBackgroundLvl2 }),
   ];
   scrollOffset = 0;
+
+  player.sprites.run = {
+    right: orcRunRight,
+    left: orcRunLeft,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
+  player.sprites.stand = {
+    right: orcIdle,
+    left: orcIdle,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
 }
 
 function initLvl3() {
@@ -286,26 +354,129 @@ function initLvl3() {
     new Platform({ x: -1, y: 533, image: platformCemetery }),
     new Platform({ x: img_width + 7, y: 533, image: platformCemetery }),
     new Platform({
-      x: img_width * 2 + 200,
+      x: img_width * 2,
       y: 533,
       image: smallPlatformCemetery,
     }),
     new Platform({
       x: img_width * 3,
       y: 430,
-      image: extraSmallPlatformCemetery,
+      image: platformCemetery,
     }),
 
-    new Platform({ x: img_width * 4 + 400, y: 230, image: platformCemetery }),
+    new Platform({ x: img_width * 4, y: 230, image: platformCemetery }),
   ];
 
   GenericObjects = [
+    new GenericObject({ x: -2040, y: 0, image: imgBackgroundLvl3 }),
+
     new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl3 }),
-    // new GenericObject({ x: 0, y: 0, image: imgHill }),
-    // new GenericObject({ x: 1300, y: 0, image: imgHill }),
+    new GenericObject({ x: 2040, y: 0, image: imgBackgroundLvl3 }),
   ];
   scrollOffset = 0;
-  if (scrollOffset > img_width * 3 + 400) initLvl3();
+
+  player.sprites.run = {
+    right: iceGolemRunRight,
+    left: iceGolemRunLeft,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
+  player.sprites.stand = {
+    right: iceGolemIdle,
+    left: iceGolemIdle,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
+}
+
+function initLvl4() {
+  currentLevel = 4;
+  player = new Player();
+  keys = {
+    right: {
+      pressed: false,
+    },
+    left: {
+      pressed: false,
+    },
+  };
+  platforms = [
+    new Platform({ x: -1, y: 533, image: platformCandy }),
+    new Platform({ x: img_width + 7, y: 533, image: platformCandy }),
+    new Platform({
+      x: img_width * 2 + 200,
+      y: 533,
+      image: smallPlatformCandy,
+    }),
+    new Platform({
+      x: img_width * 3,
+      y: 430,
+      image: extraSmallPlatformCandy,
+    }),
+
+    new Platform({ x: img_width * 3 + 200, y: 230, image: platformCandy }),
+  ];
+
+  GenericObjects = [
+    new GenericObject({ x: -2040, y: 0, image: imgBackgroundLvl4 }),
+
+    new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl4 }),
+    new GenericObject({ x: 2040, y: 0, image: imgBackgroundLvl4 }),
+  ];
+  scrollOffset = 0;
+
+  player.sprites.run = {
+    right: reaperRunRight,
+    left: reaperRunLeft,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
+  player.sprites.stand = {
+    right: reaperIdle,
+    left: reaperIdle,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
+}
+
+function initLvl5() {
+  currentLevel = 5;
+  player = new Player();
+  keys = {
+    right: {
+      pressed: false,
+    },
+    left: {
+      pressed: false,
+    },
+  };
+  platforms = [
+    new Platform({ x: -1, y: 505, image: platformDarkForest }),
+    new Platform({ x: img_width + 4, y: 505, image: platformDarkForest }),
+    new Platform({ x: img_width * 2, y: 505, image: platformDarkForest }),
+    new Platform({ x: img_width * 3 + 200, y: 530, image: platformDarkForest }),
+    new Platform({ x: img_width * 4 + 200, y: 530, image: platformDarkForest }),
+  ];
+
+  GenericObjects = [
+    new GenericObject({ x: -2040, y: 0, image: imgBackgroundLvl5 }),
+
+    new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl5 }),
+    new GenericObject({ x: 2040 - 1, y: 0, image: imgBackgroundLvl5 }),
+  ];
+  scrollOffset = 0;
+
+  player.sprites.run = {
+    right: orcRunRight,
+    left: orcRunLeft,
+    cropWidth: 150,
+    width: 127.875,
+    height: 300,
+  };
 }
 
 function animate() {
@@ -347,16 +518,17 @@ function animate() {
         genericObject.position.x += 3;
       });
     }
-    if (scrollOffset > img_width * 3) {
+    if (scrollOffset > img_width * 3 + 400) {
       if (currentLevel === 1) initLvl2();
       else if (currentLevel === 2) initLvl3();
+      else if (currentLevel === 3) initLvl4();
+      else if (currentLevel === 4) initLvl5();
     }
   }
 
   if (player.position.y > canvas.height) {
     if (currentLevel === 1) init();
     else if (currentLevel === 2) {
-      console.log('coucou');
       initLvl2();
     } else if (currentLevel === 3) initLvl3();
   }
@@ -372,7 +544,6 @@ function animate() {
       jump = true;
       doubleJump = false;
     }
-    if (player.position.y > canvas.height) init();
   });
 }
 init();
@@ -408,15 +579,15 @@ addEventListener('keydown', ({ keyCode }) => {
   switch (keyCode) {
     case 81:
       keys.left.pressed = true;
-      player.currentSprite = player.sprites.minautor.run.left;
-      player.currentCropWidth = player.sprites.minautor.run.cropWidth;
-      player.width = player.sprites.minautor.run.width;
+      player.currentSprite = player.sprites.run.left;
+      player.currentCropWidth = player.sprites.run.cropWidth;
+      player.width = player.sprites.run.width;
       break;
     case 68:
       keys.right.pressed = true;
-      player.currentSprite = player.sprites.minautor.run.right;
-      player.currentCropWidth = player.sprites.minautor.run.cropWidth;
-      player.width = player.sprites.minautor.run.width;
+      player.currentSprite = player.sprites.run.right;
+      player.currentCropWidth = player.sprites.run.cropWidth;
+      player.width = player.sprites.run.width;
       break;
 
     case 90:
@@ -486,7 +657,6 @@ function revealOneCharacter(list) {
       if (currentTextIndex === textLines.length - 1) {
         closeButton.style.visibility = 'visible';
         switchButton.style.visibility = 'hidden';
-        // dialogueElement.style.display = 'none';
       }
     }
   }
