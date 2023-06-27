@@ -44,7 +44,10 @@
   }
 
   .btn-container {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .angel {
@@ -70,6 +73,27 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: medium;
   }
+  .end {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .img-end {
+    width: 100vw;
+    height: 100vh;
+  }
+  .text-end {
+    width: 100vw;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    color: azure;
+    font-size: 40px;
+    font-weight: bold;
+  }
 </style>
 
 <div class="angel">
@@ -84,7 +108,13 @@
     <button class="close-btn">Fermer</button>
   </div>
 </div>
-<div class="end"><img src="./THE end.png" alt="" class="img-end" /></div>
+<div class="end">
+  <img src="./THE end.png" alt="" class="img-end" />
+  <p class="text-end">
+    Soul et son Lapinou Carlos sont enfin réunis <br />
+    Bravo
+  </p>
+</div>
 <audio id="background-music" src="./soundtrack.mp3" loop autoplay></audio>;
 
 <canvas></canvas>

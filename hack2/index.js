@@ -221,6 +221,9 @@ humanRunRight.src = './human-run-right.png';
 let humanIdle = document.createElement('img');
 humanIdle.src = './human-idle.png';
 
+let lapin = document.createElement('img');
+lapin.src = './lapin.png';
+
 const canvas = document.querySelector('canvas');
 let c = canvas.getContext('2d');
 
@@ -370,7 +373,14 @@ function init() {
     [
       {
         speed: speeds.fast,
-        string: 'Hadraniel - Je suis l\u0027ange Hadraniel !',
+        string:
+          '??? - Fais attention aux trous, je ne pourrais pas toujours te ramener au début !',
+      },
+    ],
+    [
+      {
+        speed: speeds.fast,
+        string: 'Hadraniel - AH au faite, je suis l\u0027ange Hadraniel !',
       },
     ],
     [
@@ -919,7 +929,7 @@ function initLvl5() {
 
     new GenericObject({ x: 0, y: 0, image: imgBackgroundLvl4 }),
     new GenericObject({ x: 2040, y: 0, image: imgBackgroundLvl4 }),
-    new GenericObject({ x: 2040 - 370, y: 250, image: platformPortal }),
+    new GenericObject({ x: 2040 - 370, y: 250, image: lapin }),
   ];
   scrollOffset = 0;
 
@@ -1130,7 +1140,7 @@ function animate() {
       else if (currentLevel === 2) initLvl3();
       else if (currentLevel === 3) initLvl4();
       else if (currentLevel === 4) initLvl5();
-      else if (currentLevel === 5) console.log('Bravo pélo');
+      else if (currentLevel === 5) initLvl6();
     }
   }
 
