@@ -1,6 +1,16 @@
 let jump = true;
 let doubleJump = false;
 let currentLevel;
+const speeds = {
+  pause: 500,
+  slow: 120,
+  normal: 90,
+  fast: 40,
+  superFast: 10,
+};
+
+let textLines = [];
+//Code d'index.js
 
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
@@ -137,7 +147,7 @@ class Platform {
       y,
     };
     this.image = image;
-    this.width = img_width;
+    this.width = image.width;
     this.height = parseInt(image.style.height);
   }
   draw() {
@@ -178,6 +188,30 @@ let scrollOffset = 0;
 function init() {
   currentLevel = 1;
   player = new Player();
+  textLines = [
+    [
+      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.slow, string: 'Oh, hello!' },
+      { speed: speeds.pause, string: '', pause: true },
+      { speed: speeds.normal, string: 'Have you seen my pet' },
+      { speed: speeds.fast, string: 'frog', classes: ['green'] },
+      { speed: speeds.normal, string: 'around?' },
+    ],
+    [
+      { speed: speeds.slow, string: 'Oh, hi!' },
+      { speed: speeds.pause, string: '', pause: true },
+      { speed: speeds.normal, string: 'Have you seen my pet' },
+      { speed: speeds.fast, string: 'snake', classes: ['green'] },
+      { speed: speeds.normal, string: 'around?' },
+    ],
+    [
+      { speed: speeds.slow, string: 'Oh, hey!' },
+      { speed: speeds.pause, string: '', pause: true },
+      { speed: speeds.normal, string: 'Have you seen my pet' },
+      { speed: speeds.fast, string: 'dog', classes: ['green'] },
+      { speed: speeds.normal, string: 'around?' },
+    ],
+  ];
   keys = {
     right: {
       pressed: false,
@@ -193,7 +227,9 @@ function init() {
     new Platform({ x: img_width * 3 + 400, y: 530, image: imgPoisonPlatform }),
   ];
 
-  GenericObjects = [new GenericObject({ x: 0, y: 0, image: imgBackground })];
+  GenericObjects = [
+    new GenericObject({ x: 0 - 1, y: 0, image: imgBackground }),
+  ];
   scrollOffset = 0;
 }
 
@@ -388,3 +424,84 @@ addEventListener('keydown', ({ keyCode }) => {
       break;
   }
 });
+
+// Code du speech
+const container = document.querySelector('.text');
+
+let characters = [];
+let currentTextIndex = 0;
+let dialogueElement = document.querySelector('.dialogue');
+
+function startText(lines) {
+  const selectedLines = lines[currentTextIndex];
+
+  selectedLines.forEach((line, index) => {
+    if (index < selectedLines.length - 1) {
+      line.string += ' ';
+    }
+
+    line.string.split('').forEach((character) => {
+      const span = document.createElement('span');
+      span.textContent = character;
+      container.appendChild(span);
+      characters.push({
+        span: span,
+        isSpace: character === ' ' && !line.pause,
+        delayAfter: line.speed,
+        classes: line.classes || [],
+      });
+    });
+  });
+
+  setTimeout(() => {
+    revealOneCharacter(characters);
+  }, 600);
+}
+
+function revealOneCharacter(list) {
+  const next = list.splice(0, 1)[0];
+  if (next) {
+    next.span.classList.add('revealed');
+    next.classes.forEach((c) => {
+      next.span.classList.add(c);
+    });
+    const delay = next.isSpace && !next.pause ? 0 : next.delayAfter;
+
+    if (list.length > 0) {
+      setTimeout(function () {
+        revealOneCharacter(list);
+      }, delay);
+    } else {
+      switchButton.disabled = false;
+      if (currentTextIndex === textLines.length - 1) {
+        closeButton.style.visibility = 'visible';
+        switchButton.style.visibility = 'hidden';
+        // dialogueElement.style.display = 'none';
+      }
+    }
+  }
+}
+
+function switchText() {
+  container.innerHTML = '';
+  characters = [];
+  switchButton.disabled = true;
+  currentTextIndex = (currentTextIndex + 1) % textLines.length;
+
+  if (currentTextIndex === 0) {
+    dialogueElement.style.display = 'block';
+  }
+
+  startText(textLines);
+}
+
+function closeText() {
+  dialogueElement.style.display = 'none';
+}
+
+const switchButton = document.querySelector('.switch-button');
+const closeButton = document.querySelector('.close-btn');
+switchButton.addEventListener('click', switchText);
+closeButton.addEventListener('click', closeText);
+
+startText(textLines);
