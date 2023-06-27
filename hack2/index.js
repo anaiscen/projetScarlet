@@ -48,10 +48,10 @@ let platformCemetery = document.createElement('img');
 platformCemetery.src = './cimetiere-plat.png';
 let smallPlatformCemetery = document.createElement('img');
 smallPlatformCemetery.src = './cimetiere-plat-medium.png';
-smallPlatformCemetery.style.width = '50px';
+smallPlatformCemetery.style.width = '301px';
 let extraSmallPlatformCemetery = document.createElement('img');
 extraSmallPlatformCemetery.src = './cimetiere-plat-little.png';
-extraSmallPlatformCemetery.style.width = '20px';
+extraSmallPlatformCemetery.style.width = '150px';
 
 let spriteRunLeft = document.createElement('img');
 spriteRunLeft.src = './spriteRunLeft.png';
@@ -172,7 +172,7 @@ class GenericObject {
       y,
     };
     this.image = image;
-    this.width = img_width;
+    this.width = image.width;
     this.height = parseInt(image.style.height);
   }
   draw() {
@@ -347,7 +347,7 @@ function animate() {
         genericObject.position.x += 3;
       });
     }
-    if (scrollOffset > img_width * 3) {
+    if (scrollOffset > image.width * 3) {
       if (currentLevel === 1) initLvl2();
       else if (currentLevel === 2) initLvl3();
     }
