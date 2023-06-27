@@ -113,7 +113,7 @@ class Player {
       },
     };
     this.currentSprite = this.sprites.stand.right;
-    this.currentCropWidth = 177;
+    this.currentCropWidth = 150;
   }
   draw() {
     c.drawImage(
