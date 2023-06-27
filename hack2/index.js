@@ -1,3 +1,13 @@
+const backgroundMusic = document.getElementById('background-music');
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'm') {
+    backgroundMusic.play();
+    backgroundMusic.volume = 0.1;
+  } else if (event.key === 'p') {
+    backgroundMusic.pause();
+  }
+});
 let jump = true;
 let doubleJump = false;
 let currentLevel;
@@ -38,10 +48,10 @@ let platformCemetery = document.createElement('img');
 platformCemetery.src = './cimetiere-plat.png';
 let smallPlatformCemetery = document.createElement('img');
 smallPlatformCemetery.src = './cimetiere-plat-medium.png';
-smallPlatformCemetery.style.width = '150px';
+smallPlatformCemetery.style.width = '50px';
 let extraSmallPlatformCemetery = document.createElement('img');
 extraSmallPlatformCemetery.src = './cimetiere-plat-little.png';
-extraSmallPlatformCemetery.style.width = '150px';
+extraSmallPlatformCemetery.style.width = '20px';
 
 let spriteRunLeft = document.createElement('img');
 spriteRunLeft.src = './spriteRunLeft.png';
