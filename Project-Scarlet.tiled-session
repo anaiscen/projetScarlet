@@ -1,0 +1,24 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+    },
+    "last.imagePath": "D:/Formation/Hackathon 2/projetScarlet/TileSet/Dungeon Tile Set",
+    "map.fixedSize": true,
+    "map.height": 16,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 90,
+    "openFiles": [
+    ],
+    "project": "Project-Scarlet.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
