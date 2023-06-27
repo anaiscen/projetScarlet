@@ -119,6 +119,10 @@ closeButton.addEventListener('click', closeText);
 
 let imgPlatform = document.createElement('img');
 imgPlatform.src = './platform.png';
+let smallPlatform = document.createElement('img');
+smallPlatform.src = './spider-world-plat-medium.png';
+let extraSmallPlatform = document.createElement('img');
+extraSmallPlatform.src = './spider-world-plat-small.png';
 
 let imgPoisonPlatform = document.createElement('img');
 imgPoisonPlatform.src = './poison-city-plat.png';
@@ -522,7 +526,7 @@ function initLvl2() {
     new Platform({
       x: -1,
       y: 505,
-      image: smallPlatformCemetery,
+      image: smallPlatform,
       width: 301,
       diffRight: -60,
       diffLeft: 20,
@@ -530,7 +534,7 @@ function initLvl2() {
     new Platform({
       x: platformCemetery.width - 100,
       y: 305,
-      image: extraSmallPlatformCemetery,
+      image: extraSmallPlatform,
       width: 150,
       diffRight: -90,
       diffLeft: 20,
@@ -538,7 +542,7 @@ function initLvl2() {
     new Platform({
       x: platformCemetery.width + 200,
       y: 150,
-      image: extraSmallPlatformCemetery,
+      image: extraSmallPlatform,
       width: 150,
       diffRight: -90,
       diffLeft: 20,
@@ -546,18 +550,34 @@ function initLvl2() {
     new Platform({
       x: platformCemetery.width + 500,
       y: 150,
-      image: extraSmallPlatformCemetery,
+      image: extraSmallPlatform,
       width: 150,
       diffRight: -90,
       diffLeft: 20,
     }),
     new Platform({
-      x: imgPlatform.width * 4 + 200,
+      x: imgPlatform.width + 900,
       y: 530,
       image: imgPlatform,
       width: 505,
       diffLeft: 40,
       diffRight: 0,
+    }),
+    new Platform({
+      x: imgPlatform.width + 1600,
+      y: 530,
+      image: extraSmallPlatform,
+      width: 150,
+      diffRight: -90,
+      diffLeft: 20,
+    }),
+    new Platform({
+      x: imgPlatform.width + 1900,
+      y: 400,
+      image: extraSmallPlatform,
+      width: 150,
+      diffRight: -90,
+      diffLeft: 20,
     }),
   ];
 
@@ -591,7 +611,7 @@ function initLvl3() {
       { speed: speeds.slow, string: 'Soul - ' },
       {
         speed: speeds.normal,
-        string: 'Oh non ! Pas en Orc ! Je suis tout vert …',
+        string: 'Oh non ! Pas en Orc ! Je suis tout vert\u2026',
       },
       { speed: speeds.pause, string: '', pause: true },
       { speed: speeds.normal, string: 'Hadraniel -' },
@@ -602,7 +622,7 @@ function initLvl3() {
       {
         speed: speeds.slow,
         string:
-          'D\u00E9sol\u00E9 Soul … Mais j\u0027adore cette petite couette !',
+          'D\u00E9sol\u00E9 Soul\u2026 Mais j\u0027adore cette petite couette !',
       },
     ],
     [
@@ -621,7 +641,7 @@ function initLvl3() {
       { speed: speeds.slow, string: 'Hadraniel - ' },
       {
         speed: speeds.normal,
-        string: 'Noooon… Du tout.',
+        string: 'Noooon\u2026 Du tout.',
       },
       { speed: speeds.pause, string: '', pause: true },
       {
@@ -640,7 +660,7 @@ function initLvl3() {
       { speed: speeds.slow, string: 'Hadraniel - ' },
       {
         speed: speeds.normal,
-        string: 'Mais tu es vraiment na\u00EFf…',
+        string: 'Mais tu es vraiment na\u00EFf\u2026',
       },
     ],
   ];
@@ -732,25 +752,25 @@ function initLvl5() {
   textLines = [
     [
       { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.slow, string: 'Sérieusement ?' },
+      { speed: speeds.slow, string: 'Ah enfin ! ' },
       { speed: speeds.pause, string: '', pause: true },
       { speed: speeds.normal, string: 'Un caillou maintenant ?' },
     ],
     [
       { speed: speeds.slow, string: 'Hadraniel - ' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Ça doit \u00EAtre dur…' },
+      { speed: speeds.normal, string: 'T\u0027es vraiment un idiot Soul…' },
     ],
     [
       { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.slow, string: 'Très drôle. Avoue-le !' },
-      { speed: speeds.pause, string: '', pause: true },
       {
         speed: speeds.normal,
-        string: 'C\u0027est toi qui m\u0027inflige ça !',
+        string: 'Retourne d\u0027o\u00F9 tu viens toi ! ',
       },
-      { speed: speeds.fast, string: 'dog', classes: ['green'] },
-      { speed: speeds.normal, string: 'around?' },
+    ],
+    [
+      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: 'Et bien va le chercher !' },
     ],
   ];
   switchButton.style.visibility = 'visible';
@@ -841,25 +861,36 @@ function initLvl4() {
   textLines = [
     [
       { speed: speeds.slow, string: 'Soul - ' },
-      { speed: speeds.slow, string: 'Oh, hello!' },
+      { speed: speeds.slow, string: 'Sérieusement ?' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Have you seen my pet' },
-      { speed: speeds.fast, string: 'frog', classes: ['green'] },
-      { speed: speeds.normal, string: 'around?' },
+      { speed: speeds.normal, string: 'Un caillou maintenant ?' },
     ],
     [
-      { speed: speeds.slow, string: 'Oh, hi!' },
+      { speed: speeds.slow, string: 'Hadraniel - ' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Have you seen my pet' },
-      { speed: speeds.fast, string: 'snake', classes: ['green'] },
-      { speed: speeds.normal, string: 'around?' },
+      { speed: speeds.normal, string: 'Ça doit \u00EAtre dur…' },
     ],
     [
-      { speed: speeds.slow, string: 'Oh, hey!' },
+      { speed: speeds.slow, string: 'Soul - ' },
+      { speed: speeds.normal, string: 'Très drôle. Avoue-le !' },
       { speed: speeds.pause, string: '', pause: true },
-      { speed: speeds.normal, string: 'Have you seen my pet' },
-      { speed: speeds.fast, string: 'dog', classes: ['green'] },
-      { speed: speeds.normal, string: 'around?' },
+      {
+        speed: speeds.normal,
+        string: 'C\u0027est toi qui m\u0027inflige \u00E7a !',
+      },
+    ],
+    [
+      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: 'Oh ! Tu as deviné ça tout seul ?' },
+      { speed: speeds.pause, string: '', pause: true },
+      {
+        speed: speeds.normal,
+        string: 'Soul - Salaud !',
+      },
+    ],
+    [
+      { speed: speeds.slow, string: 'Hadraniel - ' },
+      { speed: speeds.normal, string: '“Fuit en ricanant”' },
     ],
   ];
   switchButton.style.visibility = 'visible';
