@@ -172,7 +172,7 @@ class GenericObject {
       y,
     };
     this.image = image;
-    this.width = image.width;
+    this.width = img_width;
     this.height = parseInt(image.style.height);
   }
   draw() {
@@ -347,7 +347,7 @@ function animate() {
         genericObject.position.x += 3;
       });
     }
-    if (scrollOffset > image.width * 3) {
+    if (scrollOffset > img_width * 3) {
       if (currentLevel === 1) initLvl2();
       else if (currentLevel === 2) initLvl3();
     }
