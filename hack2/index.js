@@ -1027,7 +1027,10 @@ function initLvl4() {
   };
 }
 
-function initLvl6() {}
+function initLvl6() {
+  const end = document.querySelector('.end');
+  end.style.display = 'block';
+}
 
 function animate() {
   requestAnimationFrame(animate);
