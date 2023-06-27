@@ -1,5 +1,4 @@
 <style>
-  /* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
   body {
     margin: 0;
     background-color: black;
@@ -10,33 +9,16 @@
     height: 100vh;
   }
 
-  .text span {
-    opacity: 0;
-  }
-  .text span.revealed {
-    opacity: 1;
-  }
-  .text span.green {
-    color: #27ae60;
-  }
-  .text span.red {
-    color: #ff0000;
-  }
-
-  /* Demo styles */
-
   .dialogue {
-    /* font-family: 'Press Start 2P', cursive; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
     background: #ffffff86;
     color: white;
     border-radius: 5px;
-    margin-top: -45px;
     width: 50vw;
-    /* font-size: 1rem; */
     height: auto;
     min-height: 150px;
   }
@@ -48,12 +30,59 @@
   .close-btn {
     visibility: hidden;
   }
+
+  button {
+    background: none;
+    color: inherit;
+    border: black 2px solid;
+    padding: 5;
+    border-radius: 3px;
+    margin: 0 10px 20px 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+
+  .btn-container {
+    display: flex;
+  }
+
+  .angel {
+    position: absolute;
+    top: 50px;
+    right: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .headAngel {
+    margin-bottom: -30px;
+  }
+
+  .nameAngel {
+    padding: 3px;
+    border-radius: 5px;
+    border: black 2px solid;
+    background-color: #ffffff86;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+  }
 </style>
+
+<div class="angel">
+  <img class="headAngel" src="./head-angel.png" alt="Tête d'Hadriniel" />
+  <h2 class="nameAngel">Ange Hadraniel</h2>
+</div>
 
 <div class="dialogue">
   <div class="text"></div>
-  <button class="switch-button">Suivant</button>
-  <button class="close-btn">Fermer</button>
+  <div class="btn-container">
+    <button class="switch-button">Suivant</button>
+    <button class="close-btn">Fermer</button>
+  </div>
 </div>
 <audio id="background-music" src="./soundtrack.mp3" loop autoplay></audio>;
 
